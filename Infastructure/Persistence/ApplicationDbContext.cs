@@ -25,6 +25,12 @@ namespace Infastructure.Persistence
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            modelBuilder.Entity<Project>()
+                .HasOne(p => p.Creator)
+                .WithMany()
+                .HasForeignKey(p => p.CreatedBy)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.DTOs.Tasks
+{
+    public class CreateTaskRequest
+    {
+        public string Title { get; set; } = default!;
+        public string Description { get; set; } = default!;
+        public int ProjectId { get; set; }
+        public long? AssignedUserId { get; set; }
+        public DateTime? DueDate { get; set; }
+    }
+}
