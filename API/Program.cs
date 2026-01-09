@@ -1,5 +1,8 @@
+using API.Middleware;
 using Application;
 using Application.Interfaces;
+using Application.Validators;
+using FluentValidation;
 using Infastructure.Authentication;
 using Infastructure.Persistence;
 using Infastructure.Services;
@@ -86,9 +89,13 @@ builder.Services.AddAuthentication("Bearer")
 
 
 builder.Services.AddAuthorization();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
+
 
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
